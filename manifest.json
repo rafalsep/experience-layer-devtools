@@ -1,0 +1,13 @@
+{
+  "name": "Experience Layer Devtools",
+  "version": "0.0.4",
+  "manifest_version": 3,
+  "description": "Devtools panel for Experience Layer network logging",
+  "devtools_page": "devtools.html",
+  "offline_enabled": true,
+  "icons": {
+    "16": "images/graphql-16x16.png",
+    "48": "images/graphql-48x48.png",
+    "128": "images/graphql-128x128.png"
+  }
+}

@@ -1,0 +1,15 @@
+.RequestsOverview {
+  .ReactTable .rt-noData {
+    //display: none;
+    background: unset;
+    padding: 0;
+    top: 38px;
+  }
+  .ReactTable .downline {
+    border: solid 1px rgba(0, 0, 0, 0.05);
+    background: rgba(145, 100, 54, 0.05);
+  }
+  .ReactTable .rt-td {
+    padding: 5px;
+  }
+}

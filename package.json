@@ -1,0 +1,93 @@
+{
+  "name": "experience-layer-devtools",
+  "version": "0.0.4",
+  "main": "index.js",
+  "author": "Rafal Szczepankiewicz",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --env=production",
+    "build:dev": "NODE_ENV=development webpack --env=development",
+    "build-storybook": "build-storybook",
+    "cleanall": "rm -rf app dist tmp experience-layer-devtools.zip .eslintcache",
+    "lint": "eslint -c .eslintrc.js ./src --fix --cache",
+    "package:local": "mkdir -p app && cp -R dist images scripts devtools.html manifest.json README.md LICENSE app",
+    "package:zip": "zip -r experience-layer-devtools.zip * -x node_modules/\\* src/\\* app/\\* webpack.config.js jest.config.js prettier.config.js package.json package-lock.json \\*.zip",
+    "precommit-hook": "lint-staged --allow-empty",
+    "prepare": "husky install",
+    "start": "npm run build:dev && npm run package:local",
+    "storybook": "start-storybook -p 6006",
+    "test": "jest"
+  },
+  "engines": {
+    "npm": ">=8.5.5",
+    "node": ">=16.15.0"
+  },
+  "dependencies": {
+    "graphql": "16.5.0",
+    "graphql-syntax-highlighter-react": "0.4.0",
+    "object-sizeof": "1.6.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-json-view": "1.21.3",
+    "react-table": "6.11.5",
+    "react-tabs": "5.1.0",
+    "react-xml-viewer": "1.3.0",
+    "webpack": "5.73.0",
+    "xml2js": "0.4.23"
+  },
+  "devDependencies": {
+    "@babel/core": "7.18.6",
+    "@babel/eslint-parser": "7.18.2",
+    "@babel/preset-env": "7.18.6",
+    "@babel/preset-react": "7.18.6",
+    "@storybook/addon-actions": "6.5.9",
+    "@storybook/addon-essentials": "6.5.9",
+    "@storybook/addon-interactions": "6.5.9",
+    "@storybook/addon-links": "6.5.9",
+    "@storybook/builder-webpack5": "6.5.9",
+    "@storybook/manager-webpack5": "6.5.9",
+    "@storybook/react": "6.5.9",
+    "@storybook/testing-library": "0.0.13",
+    "autoprefixer": "10.4.7",
+    "babel-loader": "8.2.5",
+    "buffer": "6.0.3",
+    "assert": "2.0.0",
+    "css-loader": "6.7.1",
+    "eslint": "8.19.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.30.1",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.1",
+    "jest": "28.1.2",
+    "lint-staged": "13.0.3",
+    "mini-css-extract-plugin": "2.6.1",
+    "node-sass": "7.0.1",
+    "prettier": "2.7.1",
+    "sass-loader": "13.0.2",
+    "stream-browserify": "3.0.0",
+    "style-loader": "0.23.1",
+    "webpack-cli": "4.10.0"
+  },
+  "overrides": {
+    "graphql-syntax-highlighter-react": {
+      "graphql": "$graphql"
+    }
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint -c .eslintrc.js --fix --quiet",
+      "prettier --write"
+    ],
+    "*.{json}": [
+      "prettier --write"
+    ]
+  }
+}
