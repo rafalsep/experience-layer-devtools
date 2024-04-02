@@ -1,6 +1,6 @@
 {
   "name": "Experience Layer Devtools",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "manifest_version": 3,
   "description": "Devtools panel for Experience Layer network logging",
   "devtools_page": "devtools.html",
