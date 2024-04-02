@@ -6,5 +6,5 @@ import './styles/main.scss';
 const root = createRoot(document.getElementById('app'));
 
 window.panelCreated = function appInit(devtools) {
-  root.render(<App onRequestFinished={devtools.network.onRequestFinished} devtools={devtools} />);
+  root.render(<App onRequestFinished={devtools.network.onRequestFinished} devtools={devtools.network} />);
 };

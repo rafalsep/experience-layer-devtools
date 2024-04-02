@@ -31,7 +31,7 @@ const App = ({ devtools, onRequestFinished }) => {
   };
 
   const getHarsFromDevtools = () => {
-    devtools.network.getHAR(rawHar => {
+    devtools.getHAR(rawHar => {
       const graphQLEntries = rawHar.entries.filter(entry => HarUtils.isGraphQLQuery(entry));
       graphQLEntries.forEach(har => {
         handleRequest(har);
@@ -55,10 +55,9 @@ const App = ({ devtools, onRequestFinished }) => {
   return (
     <div className="App">
       <div className="left">
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div style={{ margin: '0.25rem', cursor: 'pointer' }} onClick={refreshData}>
+        <button type="button" style={{ margin: '0.25rem', cursor: 'pointer' }} onClick={refreshData}>
           Refresh
-        </div>
+        </button>
         <RequestsOverview graphQLRequests={state.graphQLRequests} onRowClick={onRowClick} selectedRowIndex={state.selectedRowIndex} detailsPanelExpanded={state.showRight} />
       </div>
       <div className={`right ${state.showRight ? '' : 'hide'}`}>
