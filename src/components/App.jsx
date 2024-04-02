@@ -5,8 +5,8 @@ import RequestsOverview from './RequestsOverview';
 import RequestDetails from './RequestDetails';
 import './styles/app.scss';
 
-const App = ({ initialRequests, onRequestFinished }) => {
-  const [state, dispatch] = useReducer(reducer, initialRequests, init);
+const App = ({ devtools, onRequestFinished }) => {
+  const [state, dispatch] = useReducer(reducer, [], init);
 
   const onRequestDetailsClose = () => {
     dispatch({ type: 'hideRequestDetails' });
@@ -30,13 +30,35 @@ const App = ({ initialRequests, onRequestFinished }) => {
     har.getContent(onHarContentLoaded);
   };
 
+  const getHarsFromDevtools = () => {
+    devtools.network.getHAR(rawHar => {
+      const graphQLEntries = rawHar.entries.filter(entry => HarUtils.isGraphQLQuery(entry));
+      graphQLEntries.forEach(har => {
+        handleRequest(har);
+      });
+    });
+  };
+
+  const refreshData = () => {
+    dispatch({ type: 'refreshData' });
+    getHarsFromDevtools();
+  };
+
   useEffect(() => {
     onRequestFinished.addListener(handleRequest);
   }, [onRequestFinished]);
 
+  useEffect(() => {
+    getHarsFromDevtools();
+  }, []);
+
   return (
     <div className="App">
       <div className="left">
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+        <div style={{ margin: '0.25rem', cursor: 'pointer' }} onClick={refreshData}>
+          Refresh
+        </div>
         <RequestsOverview graphQLRequests={state.graphQLRequests} onRowClick={onRowClick} selectedRowIndex={state.selectedRowIndex} detailsPanelExpanded={state.showRight} />
       </div>
       <div className={`right ${state.showRight ? '' : 'hide'}`}>

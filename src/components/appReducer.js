@@ -16,6 +16,8 @@ const reducer = (state, action) => {
     }
     case 'updateSelectedRow':
       return { ...state, selectedRowIndex: action.payload, showRight: true };
+    case 'refreshData':
+      return { har: null, query: 'query {}', variables: '{}', response: {}, showRight: false, graphQLRequests: [], selectedRowIndex: -1 };
     default:
       throw new Error();
   }
