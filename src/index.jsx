@@ -30,4 +30,5 @@ window.panelCreated = function appInit(devtools) {
     }
     root.render(<App onRequestFinished={devtools.network.onRequestFinished} initialRequests={initialRequests} />);
   });
+  initialRequests.length = 0;
 };
