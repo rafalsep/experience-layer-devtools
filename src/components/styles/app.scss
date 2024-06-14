@@ -4,6 +4,8 @@
 
   .left {
     flex: 1 1 20%;
+    overflow: auto;
+    height: 100%;
   }
   .right {
     height: 100%;
